@@ -21,10 +21,10 @@
 
 package org.ardlema.actions;
 
-import org.ardlema.example.ExampleSupport;
+import com.opensymphony.xwork2.ActionSupport;
 import org.ardlema.model.User;
 
-public class Login extends ExampleSupport {
+public class Login extends ActionSupport {
 
     public String execute() throws Exception {
         User user = new User(getUsername(), getPassword());

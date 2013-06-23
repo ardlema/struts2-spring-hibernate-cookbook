@@ -9,10 +9,11 @@
 <struts>
   <package name="cookbook" namespace="/cookbook" extends="struts-default">
 
+    <!--
     <action name="HelloWorld" class="org.ardlema.example.HelloWorld">
       <result>/cookbook/HelloWorld.jsp</result>
     </action>
-
+    -->
 
     
     <!-- Add additional "example" package actions here. -->

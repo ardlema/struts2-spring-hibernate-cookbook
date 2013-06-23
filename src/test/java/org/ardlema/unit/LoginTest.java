@@ -2,8 +2,10 @@ package org.ardlema.unit;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
+import org.apache.struts2.StrutsTestCase;
 import org.ardlema.actions.Login;
 
+import java.util.List;
 import java.util.Map;
 
 public class LoginTest extends ConfigTest {
