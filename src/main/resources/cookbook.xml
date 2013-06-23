@@ -9,6 +9,11 @@
 <struts>
   <package name="cookbook" namespace="/cookbook" extends="struts-default">
 
+    <action name="Login"
+              class="org.ardlema.actions.Login">
+          <result name="success" type="redirect">/cookbook/Welcome.jsp</result>
+      </action>
+
     <!--
     <action name="HelloWorld" class="org.ardlema.example.HelloWorld">
       <result>/cookbook/HelloWorld.jsp</result>

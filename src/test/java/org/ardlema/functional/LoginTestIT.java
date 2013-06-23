@@ -32,7 +32,7 @@ public class LoginTestIT
         WebElement passwordInputText = getInputText("password");
         passwordInputText.sendKeys("12345");
         clickElement("login");
-        //assertThat(driver.getTitle(), is(equalTo("Welcome")));
+        assertThat(driver.getTitle(), is(equalTo("Welcome")));
 
     }
 
