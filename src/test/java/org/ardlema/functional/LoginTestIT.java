@@ -36,13 +36,25 @@ public class LoginTestIT
 
     }
 
-    public void testLoginNOK() throws Exception
+    public void testUserNameNOK() throws Exception
     {
         driver.get(this.baseUrl);
         WebElement userNameInputText = getInputText("username");
         userNameInputText.sendKeys("paco");
         WebElement passwordInputText = getInputText("password");
         passwordInputText.sendKeys("12345");
+        clickElement("login");
+        assertThat(driver.getTitle(), is(equalTo("Sign On")));
+
+    }
+
+    public void testPasswordNOK() throws Exception
+    {
+        driver.get(this.baseUrl);
+        WebElement userNameInputText = getInputText("username");
+        userNameInputText.sendKeys("alberto");
+        WebElement passwordInputText = getInputText("password");
+        passwordInputText.sendKeys("45678");
         clickElement("login");
         assertThat(driver.getTitle(), is(equalTo("Sign On")));
 
