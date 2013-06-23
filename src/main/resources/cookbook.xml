@@ -2,26 +2,14 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-<!-- 
-  - This file is included by the struts.xml file as an example
-  - of how to break up the configuration file into multiple files.
--->
 <struts>
   <package name="cookbook" namespace="/cookbook" extends="struts-default">
 
     <action name="Login"
               class="org.ardlema.actions.Login">
           <result name="success" type="redirect">/cookbook/Welcome.jsp</result>
+          <result name="input" type="redirect">/cookbook/Login.jsp</result>
       </action>
-
-    <!--
-    <action name="HelloWorld" class="org.ardlema.example.HelloWorld">
-      <result>/cookbook/HelloWorld.jsp</result>
-    </action>
-    -->
-
-    
-    <!-- Add additional "example" package actions here. -->
     
   </package>
 </struts>

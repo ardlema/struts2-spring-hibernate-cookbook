@@ -24,7 +24,7 @@ public class LoginTestIT
         this.driver = new HtmlUnitDriver();
     }
 
-    public void testSeleniumCallLoginPage() throws Exception
+    public void testLoginOK() throws Exception
     {
         driver.get(this.baseUrl);
         WebElement userNameInputText = getInputText("username");
@@ -33,6 +33,18 @@ public class LoginTestIT
         passwordInputText.sendKeys("12345");
         clickElement("login");
         assertThat(driver.getTitle(), is(equalTo("Welcome")));
+
+    }
+
+    public void testLoginNOK() throws Exception
+    {
+        driver.get(this.baseUrl);
+        WebElement userNameInputText = getInputText("username");
+        userNameInputText.sendKeys("paco");
+        WebElement passwordInputText = getInputText("password");
+        passwordInputText.sendKeys("12345");
+        clickElement("login");
+        assertThat(driver.getTitle(), is(equalTo("Sign On")));
 
     }
 
