@@ -5,12 +5,11 @@ import com.opensymphony.xwork2.config.RuntimeConfiguration;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
 import com.opensymphony.xwork2.config.entities.ResultConfig;
 import com.opensymphony.xwork2.config.providers.XmlConfigurationProvider;
-
-import java.util.Map;
-import java.util.List;
-
 import org.apache.struts2.StrutsSpringTestCase;
-import org.apache.struts2.StrutsTestCase;
+
+import java.util.List;
+import java.util.Map;
+
 
 public class ConfigTest extends StrutsSpringTestCase {
 

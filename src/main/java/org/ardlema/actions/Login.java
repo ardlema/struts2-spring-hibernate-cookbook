@@ -2,27 +2,21 @@ package org.ardlema.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.ardlema.model.User;
+import org.ardlema.services.LoginService;
 
 public class Login extends ActionSupport {
+
+    private LoginService loginService;
+    private String password;
+    private String username;
 
     public String execute() throws Exception {
         User user = new User(getUsername(), getPassword());
 
-        if (isUserInvalid(user)) return INPUT;
+        if (!loginService.isValidUser(user)) return INPUT;
 
         return SUCCESS;
     }
-
-    private boolean isUserInvalid(User user) {
-        boolean invalid = false;
-        if (!user.getUserName().equals("alberto")
-              || !user.getPassword().equals("12345")){
-            invalid = true;
-        }
-        return invalid;
-    }
-
-    private String username;
 
     public String getUsername() {
         return username;
@@ -32,7 +26,6 @@ public class Login extends ActionSupport {
         this.username = username;
     }
 
-    private String password;
 
     public String getPassword() {
         return password;
@@ -40,6 +33,14 @@ public class Login extends ActionSupport {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LoginService getLoginService() {
+        return loginService;
+    }
+
+    public void setLoginService(LoginService loginService) {
+        this.loginService = loginService;
     }
 
 }

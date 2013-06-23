@@ -1,35 +1,46 @@
 package org.ardlema.unit;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.config.entities.ActionConfig;
-import org.apache.struts2.StrutsTestCase;
 import org.ardlema.actions.Login;
+import org.ardlema.model.User;
+import org.ardlema.services.LoginService;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.List;
 import java.util.Map;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
 public class LoginTest extends ConfigTest {
 
+    Login login = new Login();
+
+    @Mock
+    LoginService mockLoginService;
+
+    @Before
+    public void setup() {
+        login.setLoginService(mockLoginService);
+    }
+
+    @Test
     public void testLoginOKSubmit() throws Exception {
-        Login login = new Login();
         login.setUsername("alberto");
         login.setPassword("12345");
+        when(mockLoginService.isValidUser(any(User.class))).thenReturn(true);
         String result = login.execute();
         assertSuccess(result);
     }
 
+    @Test
     public void testLoginUserNameNOKSubmit() throws Exception {
-        Login login = new Login();
         login.setUsername("paquito");
         login.setPassword("12345");
-        String result = login.execute();
-        assertInput(result);
-    }
-
-    public void testPasswordNOKSubmit() throws Exception {
-        Login login = new Login();
-        login.setUsername("alberto");
-        login.setPassword("45678");
+        when(mockLoginService.isValidUser(any(User.class))).thenReturn(false);
         String result = login.execute();
         assertInput(result);
     }
