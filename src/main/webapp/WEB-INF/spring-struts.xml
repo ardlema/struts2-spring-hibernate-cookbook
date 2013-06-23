@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Action beans injection -->
+    <bean id="login" scope="prototype" class="org.ardlema.actions.Login">
+        <constructor-arg>
+            <ref bean="loginService"/>
+        </constructor-arg>
+    </bean>
+
+
+</beans>

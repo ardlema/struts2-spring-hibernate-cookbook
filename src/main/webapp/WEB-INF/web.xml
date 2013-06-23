@@ -21,6 +21,17 @@
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring-services.xml
+            /WEB-INF/spring-hibernate.xml
+            /WEB-INF/spring-dao.xml
+            /WEB-INF/spring-struts.xml
+
+        </param-value>
+    </context-param>
+
   <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

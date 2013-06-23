@@ -1,12 +1,13 @@
 package org.ardlema.actions;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.dispatcher.DefaultActionSupport;
 import org.ardlema.model.User;
 import org.ardlema.services.LoginService;
 
-public class Login extends ActionSupport {
+public class Login extends DefaultActionSupport {
 
     private LoginService loginService;
+
     private String password;
     private String username;
 
