@@ -5,10 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 
-
-public class LoginTestIT extends TestCase
+public class LoginTestIT
+        extends TestCase
 {
     private String baseUrl;
     private WebDriver driver;
@@ -29,6 +32,8 @@ public class LoginTestIT extends TestCase
         WebElement passwordInputText = getInputText("password");
         passwordInputText.sendKeys("12345");
         clickElement("login");
+        //assertThat(driver.getTitle(), is(equalTo("Welcome")));
+
     }
 
     private WebElement getInputText(String name) {
