@@ -10,15 +10,16 @@
 			http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <bean id="driverManager" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/cookbook"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
+    <!-- DAO beans injection -->
+
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="url" value="jdbc:h2:~/test;INIT=RUNSCRIPT FROM 'classpath:schema.sql'\;RUNSCRIPT FROM 'classpath:test-data.sql'" />
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="driverManager" />
+        <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
                 <value>org.ardlema.model.User</value>
@@ -26,9 +27,17 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
             </props>
+        </property>
+
+    </bean>
+
+    <bean id="userDao" class="org.ardlema.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="clazz">
+            <value>org.ardlema.model.User</value>
         </property>
     </bean>
 
