@@ -14,18 +14,9 @@ public class LoginServiceImpl
 
     private UserDao userDao;
 
-    /*public boolean isValidUser(User user) {
-        boolean valid = false;
-        if (user.getUserName().equals("alberto")
-                && user.getPassword().equals("12345")){
-            valid = true;
-        }
-        return valid;
-    }*/
-
     public boolean isValidUser(User user) {
-        List users = userDao.findAll();
-        return users.size()>0;
+        List users = userDao.findUser(user);
+        return users.size()==1;
     }
 
 
