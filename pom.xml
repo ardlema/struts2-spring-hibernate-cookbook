@@ -18,6 +18,7 @@
         <hibernate.version>4.0.1.Final</hibernate.version>
         <sl4j.version>1.7.2</sl4j.version>
         <hsqldb.version>2.2.9</hsqldb.version>
+        <mysql.connector.java.version>5.1.25</mysql.connector.java.version>
     </properties>
 
     <repositories>
@@ -161,7 +162,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.25</version>
+            <version>${mysql.connector.java.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -169,6 +170,13 @@
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
+        </dependency>
+
+        <!-- h2 database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.172</version>
         </dependency>
 
     </dependencies>
@@ -180,6 +188,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.8</version>
+                    <configuration>
+                        <additionalClasspathElements>
+                            <additionalClasspathElement>test/resources</additionalClasspathElement>
+                        </additionalClasspathElements>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -213,6 +226,61 @@
                         </deployables>
                     </configuration>
                 </plugin>
+
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+
+                    <dependencies>
+                        <!-- specify the dependent jdbc driver here -->
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>${mysql.connector.java.version}</version>
+                        </dependency>
+                    </dependencies>
+
+                    <configuration>
+                        <driver>org.gjt.mm.mysql.Driver</driver>
+                        <url>jdbc:mysql://localhost/cookbook</url>
+                        <username>root</username>
+                        <password>root</password>
+                        <srcFiles>
+                          <srcFile>src/test/resources/schema.sql</srcFile>
+                          <srcFile>src/test/resources/test-data.sql</srcFile>
+                        </srcFiles>
+                        <!--all executions are ignored if -Dmaven.test.skip=true-->
+                        <skip>${maven.test.skip}</skip>
+
+                    </configuration>
+
+                    <executions>
+
+                        <!--  It creates integration test data before running the tests -->
+                        <execution>
+                            <id>create-integration-test-data</id>
+                            <phase>process-test-resources</phase>
+                            <goals>
+                                <goal>execute</goal>
+                            </goals>
+                            <configuration>
+                                <orderFile>ascending</orderFile>
+                                <fileset>
+                                    <basedir>/</basedir>
+                                    <includes>
+                                        <include>schema.sql</include>
+                                        <include>test-data.sql</include>
+                                    </includes>
+                                </fileset>
+                            </configuration>
+                        </execution>
+                    </executions>
+
+                </plugin>
+
+
+
             </plugins>
         </pluginManagement>
         <plugins>
