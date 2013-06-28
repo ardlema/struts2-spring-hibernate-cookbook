@@ -1,8 +1,12 @@
 struts2-spring-hibernate-cookbook
 =================================
 
-Cookbook online using Struts2 Spring &amp; Hibernate.
+Cookbook tool using Struts2 Spring &amp; Hibernate.
 
-* To execute unit and functional test -> mvn clean verify
+* Prerequisites
+
+  - You need a MySQL database instance up and running with a database called cookbook created
+
+* To build the project -> ./build
 
 * To run the project -> mvn jetty:run
