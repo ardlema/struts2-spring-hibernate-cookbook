@@ -10,9 +10,7 @@ public class UserDaoImpl
         implements UserDao {
 
 
-    public List<User> findAll(){
-        return super.findAll();
-    }
+
 
     public List<User> findUser(User user){
         String hql = "FROM User u WHERE u.userName = :userName AND u.password = :password";

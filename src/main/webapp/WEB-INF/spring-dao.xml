@@ -13,4 +13,11 @@
         </property>
     </bean>
 
+    <bean id="recetaDao" class="org.ardlema.dao.RecetaDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="clazz">
+            <value>org.ardlema.model.Receta</value>
+        </property>
+    </bean>
+
 </beans>

@@ -15,14 +15,14 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:~/test;INIT=RUNSCRIPT FROM 'classpath:schema.sql'\;RUNSCRIPT FROM 'classpath:test-data.sql'" />
+        <property name="url" value="jdbc:h2:~/test;" />
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>org.ardlema.model.User</value>
+                <value>org.ardlema.model.Receta</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -35,13 +35,12 @@
 
     </bean>
 
-    <bean id="userDao" class="org.ardlema.dao.UserDaoImpl">
+    <bean id="recetaDao" class="org.ardlema.dao.RecetaDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="clazz">
-            <value>org.ardlema.model.User</value>
+            <value>org.ardlema.model.Receta</value>
         </property>
     </bean>
-
 
     <!-- Declare a transaction manager-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
