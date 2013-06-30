@@ -1,11 +1,11 @@
 package org.ardlema.dao;
 
-import java.io.Serializable;
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Transactional
 public abstract class BaseHibernateDaoImpl<T extends Serializable> implements BaseHibernateDao<T>{
@@ -39,7 +39,7 @@ public abstract class BaseHibernateDaoImpl<T extends Serializable> implements Ba
     }
 
     @Transactional(readOnly = false)
-    public void save(final T entity) {
+    public void save(final T entity) throws Exception {
         getCurrentSession().persist(entity);
     }
 

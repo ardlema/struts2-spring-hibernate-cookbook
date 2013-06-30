@@ -9,6 +9,10 @@
        <property name="userDao" ref="userDao"/>
     </bean>
 
+    <bean id="recetaService" class="org.ardlema.services.RecetaServiceImpl">
+        <property name="recetaDao" ref="recetaDao"/>
+    </bean>
+
 
 
 </beans>

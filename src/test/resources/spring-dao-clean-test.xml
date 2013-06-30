@@ -42,6 +42,10 @@
         </property>
     </bean>
 
+    <bean id="recetaService" class="org.ardlema.services.RecetaServiceImpl">
+        <property name="recetaDao" ref="recetaDao"/>
+    </bean>
+
     <!-- Declare a transaction manager-->
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />

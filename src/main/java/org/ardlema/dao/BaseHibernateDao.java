@@ -12,7 +12,7 @@ public interface BaseHibernateDao<T> {
 
     //public List<T> findAll(int start, int resultSize);
 
-    public void save(final T entity);
+    public void save(final T entity) throws Exception;
 
     //public void update(final T entity);
 
