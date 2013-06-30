@@ -6,11 +6,15 @@
 </head>
 
 <body>
-<h3>Commands</h3>
-<ul>
-    <li><a href="<s:url action="Login_input"/>">Sign On</a></li>
-    <li><a href="<s:url action="Register"/>">Register</a></li>
-</ul>
+<h3>Options</h3>
+
+<s:form action="SaveReceta">
+    <s:textfield key="nombre"/>
+    <s:textfield key="dificultad"/>
+    <s:textfield key="elaboracion"/>
+    <s:submit id="save"/>
+</s:form>
+
 
 </body>
 </html>

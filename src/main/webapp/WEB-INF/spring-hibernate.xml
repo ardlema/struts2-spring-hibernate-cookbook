@@ -22,6 +22,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>org.ardlema.model.User</value>
+                <value>org.ardlema.model.Receta</value>
             </list>
         </property>
         <property name="hibernateProperties">

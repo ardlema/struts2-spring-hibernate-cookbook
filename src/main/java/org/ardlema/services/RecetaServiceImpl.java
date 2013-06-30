@@ -17,11 +17,15 @@ public class RecetaServiceImpl implements RecetaService {
     }
 
     public ServiceResult saveReceta(Receta receta) {
+        ServiceResult serviceResult;
         try {
             recetaDao.save(receta);
+            serviceResult = ServiceResult.RESULT_OK;
         } catch (Exception e) {
-           return ServiceResult.RESULT_ERROR;
+           //TODO: Logear la excepcion
+           serviceResult = ServiceResult.RESULT_ERROR;
         }
-      return ServiceResult.RESULT_OK;
+
+      return serviceResult;
     }
 }

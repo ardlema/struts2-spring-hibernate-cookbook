@@ -18,6 +18,9 @@ import static org.mockito.Mockito.when;
 public class RecetaTest extends ConfigTest {
 
     RecetaAction receta = new RecetaAction();
+    private static String nombreReceta = "LA RECETA";
+    private static String dificultad = "4";
+    private static String elaboracion = "HAZ LA RECETA Y CALLA!!!";
 
     @Mock
     RecetaService mockRecetaService;
@@ -30,6 +33,9 @@ public class RecetaTest extends ConfigTest {
     @Test
     public void shouldReturnOKWhenTheRecetaHasBeenSaved() {
         when(mockRecetaService.saveReceta(any(Receta.class))).thenReturn(ServiceResult.RESULT_OK);
+        receta.setNombre(nombreReceta);
+        receta.setDificultad(dificultad);
+        receta.setElaboracion(elaboracion);
         String result = receta.saveReceta();
         assertSuccess(result);
     }
@@ -37,6 +43,9 @@ public class RecetaTest extends ConfigTest {
     @Test
     public void shouldReturnERRORWhenTheRecetaHasNotBeenSaved() {
         when(mockRecetaService.saveReceta(any(Receta.class))).thenReturn(ServiceResult.RESULT_ERROR);
+        receta.setNombre(nombreReceta);
+        receta.setDificultad(dificultad);
+        receta.setElaboracion(elaboracion);
         String result = receta.saveReceta();
         assertError(result);
     }
