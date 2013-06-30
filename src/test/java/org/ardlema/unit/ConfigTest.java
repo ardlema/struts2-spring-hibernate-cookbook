@@ -13,9 +13,14 @@ import java.util.Map;
 
 public class ConfigTest extends StrutsSpringTestCase {
 
-    protected void assertSuccess(String result) throws Exception {
+    protected void assertSuccess(String result) {
         assertTrue("Expected a success result!",
                 ActionSupport.SUCCESS.equals(result));
+    }
+
+    protected void assertError(String result)  {
+        assertTrue("Expected an error result!",
+                ActionSupport.ERROR.equals(result));
     }
 
     protected void assertInput(String result) throws Exception {
